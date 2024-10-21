@@ -59,6 +59,9 @@ class BatchProcessingModel(FlowSpec):
 
         print("Obtaining predictions")
 
+        model = None
+        data = None
+
         # Se recorren las tareas previas para obtener los datos y el modelo.
         for task in previous_tasks:
             if hasattr(task, 'X_batch'):

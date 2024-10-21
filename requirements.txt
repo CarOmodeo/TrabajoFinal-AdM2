@@ -5,3 +5,5 @@ optuna
 joblib
 metaflow
 pylint
+boto3
+matplotlib
