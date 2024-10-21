@@ -5,5 +5,7 @@ optuna
 joblib
 metaflow
 pylint
+redis
 boto3
 matplotlib
+seaborn

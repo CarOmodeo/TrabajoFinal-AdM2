@@ -52,18 +52,18 @@ services:
       /usr/bin/mc cp /testing.csv s3/${DATA_REPO_BUCKET_NAME:-data}/raw/testing.csv;
       exit 0;
       '
-  # redis:
-  #   image: redis:latest
-  #   restart: always
-  #   ports:
-  #     - "6379:6379"
-  #   volumes:
-  #     - redis_data:/root/redis
-  #     - redis_data:/usr/local/etc/redis/redis.conf
-  #   environment:
-  #     - REDIS_PASSWORD=${REDIS_PASSWORD:-data}
-  #     - REDIS_PORT=${REDIS_PORT:-data}
-  #     - REDIS_DATABASES=${REDIS_DATABASES:-data}
+  redis:
+   image: redis:latest
+   restart: always
+   ports:
+     - "6379:6379"
+   volumes:
+     - redis_data:/root/redis
+     - redis_data:/usr/local/etc/redis/redis.conf
+   environment:
+     - REDIS_PASSWORD=${REDIS_PASSWORD:-data}
+     - REDIS_PORT=${REDIS_PORT:-data}
+     - REDIS_DATABASES=${REDIS_DATABASES:-data}
 
 networks:
   backend:

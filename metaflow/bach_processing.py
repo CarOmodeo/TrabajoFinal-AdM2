@@ -93,6 +93,7 @@ class BatchProcessingModel(FlowSpec):
         Paso para guardar los resultados como un archivo CSV en S3.
         """
         import pandas as pd
+        import redis
         from io import StringIO
 
         # Convertimos all_data a un DataFrame
@@ -107,6 +108,15 @@ class BatchProcessingModel(FlowSpec):
         s3.put("predictions/predictions.csv", csv_buffer.getvalue())
 
         print("Data saved to S3 as predictions.csv")
+
+        # Almacenar en Redis
+        r = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+        # Guardar cada fila en Redis
+        for idx, row in df.iterrows():
+            r.set(f"prediction:{idx}", row.to_json())
+
+        print("Data saved to S3 and Redis")
         self.next(self.end)
 
     @step

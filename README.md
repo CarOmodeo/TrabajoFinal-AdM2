@@ -21,9 +21,13 @@ Nuestra implementación incluye:
   - **Model Training (model_training.py)**: Para el entrenamiento del modelo de machine learning. Utiliza Optuna para la búsqueda de hiperparámetros, entrena un modelo de clasificación y guarda el modelo entrenado en S3.
   - **Batch Processing (batch_processing.py)**: Para realizar predicciones por lotes utilizando el modelo entrenado. Carga los datos de prueba desde S3, realiza las predicciones y guarda los resultados en S3.
 
-- Un servicio **MinIO** desplegado en Docker que proporciona una alternativa compatible con S3 para gestionar el almacenamiento de objetos. El servicio permite manejar buckets y objetos de manera similar a Amazon S3, brindando una solución local y flexible para almacenar y recuperar datos. La configuración del contenedor y los volúmenes persistentes se encuentran definidos en el archivo **docker-compose.yml**, facilitando la implementación
+- Un servicio **MinIO** desplegado en Docker que proporciona una alternativa compatible con S3 para gestionar el almacenamiento de objetos. El servicio permite manejar buckets y objetos de manera similar a Amazon S3, brindando una solución local y flexible para almacenar y recuperar datos. La configuración del contenedor y los volúmenes persistentes se encuentran definidos en el archivo **docker-compose.yml**, facilitando la implementación.
 
-- Una Jupyter notebook para visualizar las predicciónes realizadas por el modelo.
+- Un servicio **Redis** desplegado en Docker que proporciona una base de datos clave - valor para almacenar las predicciones. La configuración del contenedor y los volúmenes persistentes se encuentran definidos en el archivo **docker-compose.yml**, facilitando la implementación.
+
+- Una Jupyter notebook para visualizar las predicciónes realizadas por el modelo guardadas en el S3.
+
+- Una Jupyter notebook para visualizar las predicciónes realizadas por el modelo guardadas en redis.
 
 ## Instrucciones para levantar el proyecto
 
@@ -97,4 +101,6 @@ python3 metaflow/bach_processing.py run
 
 ## Visualización de las predicciónes
 
-Para visualizar las predicciónes ejecutar la notebook predictions_out.ipynb.
+Para visualizar las predicciónes almacenadas en S3 ejecutar la notebook **predictions_out.ipynb**.
+
+Para visualizar las predicciónes almacenadas en redis ejecutar la notebook **predictions_redis_out.ipynb**.
